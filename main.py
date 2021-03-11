@@ -4,12 +4,12 @@ import time
 import sys
 import psutil
 
+client_id = "816294087845347358"
+RPC = Presence(client_id)
+RPC.connect()
+
 
 if sys.argv[1] == "story":
-    client_id = "816294087845347358"
-    RPC = Presence(client_id)
-    RPC.connect()
-
     images = [
         "crimson",
         "blue",
@@ -74,10 +74,6 @@ if sys.argv[1] == "story":
         time.sleep(15)
 
 if sys.argv[1] == "fragments":
-    client_id = "817484578213593121"
-    RPC = Presence(client_id)
-    RPC.connect()
-
     firstLines = [
         "The world falling into fragments, slowly.",
         "These fragments, shattered pieces of what once was...",
@@ -113,10 +109,6 @@ if sys.argv[1] == "fragments":
             time.sleep(15)
 
 if sys.argv[1] == "sys":
-    client_id = "817487250153144320"
-    RPC = Presence(client_id, pipe=0)
-    RPC.connect()
-
     while True:
         cpu_per = round(psutil.cpu_percent(), 1)
         mem = psutil.virtual_memory()
