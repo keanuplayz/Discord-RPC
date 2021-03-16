@@ -10,102 +10,92 @@ RPC.connect()
 
 
 if sys.argv[1] == "story":
-    images = [
-        "crimson",
-        "blue",
-        "emerald"
-    ]
-
-    texts = [
-        "Grimoire of Crimson",
-        "Grimoire of Blue",
-        "Grimoire of Emerald"
-    ]
-
-    firstLines = [
-        "His colour.",
-        "Her colour.",
-        "Another's colour."
-    ]
-
-    secondLines = [
-        "A crimson red... like the fury within.",
-        "A soft blue... like the tranquility within.",
-        "A bright emerald... like the caringness within."
-    ]
-
-    urls = [
-        "https://muxiv.net/album/3171532",
-        "https://muxiv.net/album/3358118",
-        "https://muxiv.net/album/3390074"
+    data = [
+        {
+            "image": "crimson",
+            "text": "Grimoire of Crimson",
+            "first": "His colour.",
+            "second": "A crimson red... like the fury within.",
+            "url": "https://muxiv.net/album/3171532"
+        },
+        {
+            "image": "blue",
+            "text": "Grimoire of Blue",
+            "first": "Her colour.",
+            "second": "A soft blue... like the tranquility within.",
+            "url": "https://muxiv.net/album/3358118"
+        },
+        {
+            "image": "emerald",
+            "text": "Grimoire of Emerald",
+            "first": "Another's colour.",
+            "second": "A bright emerald... like the caringness within.",
+            "url": "https://muxiv.net/album/3390074"
+        },
     ]
 
     while True:
-
-        indexes = [0, 1, 2]
-        i = random.choice(indexes)
-        image = images[i]
-        firstLine = firstLines[i]
-        secondLine = secondLines[i]
-        text = texts[i]
-        url = urls[i]
+        c = random.choice(data)
 
         buttons = [
             {
-                "label": "Current Project",
-                "url": "https://github.com/NovaGM"
+                "label": "Current Project | LoggerTS",
+                "url": "https://github.com/keanuplayz/LoggerTS"
             },
             {
-                "label": text,
-                "url": url
+                "label": c["text"],
+                "url": c["url"]
             }
         ]
 
-        print(image)
-        print(firstLine)
-        print(secondLine)
-        print(text)
-        print(url)
+        print(c["image"])
+        print(c["first"])
+        print(c["second"])
+        print(c["text"])
+        print(c["url"])
         print("\n")
 
-        RPC.update(details=firstLine, state=secondLine,
-                   large_image=image, large_text=text, buttons=buttons)
+        RPC.update(details=c["first"], state=c["second"],
+                   large_image=c["image"], large_text=c["text"], buttons=buttons)
 
         time.sleep(15)
 
 if sys.argv[1] == "fragments":
-    firstLines = [
-        "The world falling into fragments, slowly.",
-        "These fragments, shattered pieces of what once was...",
-        "Until one day... man will unravel the long lost secrets.",
-        "The pieces will be put together to form a whole.",
-        "At long last, it will be put to rest.",
-        "Collectively, the story will be waved goodbye."
-    ]
-
-    secondLines = [
-        "Reality collapsing at the seams.",
-        "are now spread around. Never to be found again.",
-        "Man will find a way to put the pieces back together.",
-        "And as such, the story will be complete.",
-        "Complete. Never to be spoken of again.",
-        "Or perhaps, it will be just the individual who happily waves."
+    data = [
+        {
+            "first": "The world falling into fragments, slowly.",
+            "second": "Reality collapsing at the seams."
+        },
+        {
+            "first": "These fragments, shattered pieces of what once was...",
+            "second": "are now spread around. Never to be found again."
+        },
+        {
+            "first": "Until one day... man will unravel the long lost secrets.",
+            "second": "Man will find a way to put the pieces back together."
+        },
+        {
+            "first": "The pieces will be put together to form a whole.",
+            "second": "And as such, the story will be complete."
+        },
+        {
+            "first": "At long last, it will be put to rest.",
+            "second": "Complete. Never to be spoken of again."
+        },
+        {
+            "first": "Collectively, the story will be waved goodbye.",
+            "second": "Or perhaps, it will be just the individual who happily waves."
+        }
     ]
 
     while True:
-        indexes = [0, 1, 2, 3, 4, 5]
-        for i in range(len(indexes)):
-            # print(i)
-            # time.sleep(1)
-            firstLine = firstLines[i]
-            secondLine = secondLines[i]
-
+        for i in data:
+            firstLine = i["first"]
+            secondLine = i["second"]
             print(firstLine)
             print(secondLine)
             print("\n")
-
             RPC.update(details=firstLine, state=secondLine)
-
             time.sleep(15)
 
 if sys.argv[1] == "sys":
